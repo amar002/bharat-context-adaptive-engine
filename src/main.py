@@ -9,6 +9,7 @@ from fastapi.responses import JSONResponse
 import uvicorn
 
 from .router_inference import router as inference_router
+from .router_recommendations import router as recommendations_router
 
 
 # Initialize FastAPI app
@@ -31,6 +32,7 @@ app.add_middleware(
 
 # Include routers
 app.include_router(inference_router)
+app.include_router(recommendations_router)
 
 
 @app.get("/")
@@ -44,6 +46,7 @@ async def root():
             "inference": "/v1/infer",
             "health": "/v1/health",
             "rules": "/v1/rules",
+            "recommendations": "/v1/recommendations/generate",
             "docs": "/docs"
         }
     }
